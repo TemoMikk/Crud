@@ -5,14 +5,13 @@ const app = express()
 const port = 3000
 const users = require('./user')
 const bcrypt = require('bcrypt')
+const dotenv = require('dotenv').config()
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({ extended: true }))
-mongoose.connect(
-  'mongodb+srv://temomik:temomik@cluster0.wzrpldg.mongodb.net/crud',
-  () => {
-    console.log('ki')
-  }
-)
+MONGO_KEY = process.env.MONGO_KEY
+mongoose.connect(MONGO_KEY, () => {
+  console.log('ki')
+})
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
